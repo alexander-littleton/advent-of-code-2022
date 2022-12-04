@@ -6,6 +6,7 @@ def extractAndTransformRounds():
         rounds.append(makeRound(rawRound))
     return rounds
 
+
 opponentChoiceMap = {
     'A': "rock",
     'B': "paper",
@@ -45,6 +46,7 @@ resultMap = {
 
 round = dict[str, str]
 
+
 def makeRound(rawRound: str) -> round:
     opponentChoice = opponentChoiceMap[rawRound[0]]
     necessaryResult = necessaryResultMap[rawRound[2]]
@@ -53,6 +55,7 @@ def makeRound(rawRound: str) -> round:
         "necessaryResult": necessaryResult,
         "opponentChoice": opponentChoice
     }
+
 
 def calculateScore(rounds: round) -> int:
     score = 0
@@ -63,10 +66,11 @@ def calculateScore(rounds: round) -> int:
         myChoice = ""
         if necessaryResult == "D":
             myChoice = opponentChoice
-        else :
+        else:
             myChoice = hierarchyMap[necessaryResult][opponentChoice]
         score += resultMap[necessaryResult]
         score += scoreMap[myChoice]
     return score
+
 
 print(calculateScore(extractAndTransformRounds()))

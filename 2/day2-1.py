@@ -1,12 +1,11 @@
-import math
-
 def extractAndTransformRounds():
     file = open("input.txt", "r")
     rawRounds = file.readlines()
-    rounds = []
+    rounds: list[round] = []
     for rawRound in rawRounds:
         rounds.append(makeRound(rawRound))
     return rounds
+
 
 opponentChoiceMap = {
     'A': "rock",
@@ -40,6 +39,7 @@ resultMap = {
 
 round = dict[str, str]
 
+
 def makeRound(rawRound: str) -> round:
     opponentChoice = opponentChoiceMap[rawRound[0]]
     myChoice = myChoiceMap[rawRound[2]]
@@ -56,6 +56,7 @@ def makeRound(rawRound: str) -> round:
         "result": result
     }
 
+
 def calculateScore(rounds: round) -> int:
     score = 0
     for round in rounds:
@@ -64,5 +65,6 @@ def calculateScore(rounds: round) -> int:
         score += resultMap[result]
         score += scoreMap[myChoice]
     return score
+
 
 print(calculateScore(extractAndTransformRounds()))
